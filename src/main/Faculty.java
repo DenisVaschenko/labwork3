@@ -36,13 +36,14 @@ class Faculty extends IdObject{
         	return;
         }
         Teacher teacher = teachers.get(rand.nextInt(teachers.size()));
-        System.out.println("Екзамен приймав: ");
+        System.out.println("Екзамен приймав/ла: ");
         teacher.showLess();
         System.out.println();
         int sum = Arrays.stream(exams).mapToInt(exam -> teacher.Examine(exam, applicant)).sum();
         int average = sum / exams.length;
         if (average >= neededMark){
             System.out.println("Абітурієнт пройшов відбір. Його середній бал: " + average);
+            applicant.faculty = this;
             applicants.add(applicant);
         }
         else{
@@ -51,6 +52,7 @@ class Faculty extends IdObject{
         
     }
     public void AddTeacher(Teacher teacher){
+    	teacher.faculty = this;
         teachers.add(teacher);
     }
     public void showLess(){

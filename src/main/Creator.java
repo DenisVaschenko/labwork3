@@ -14,7 +14,7 @@ class Creator{
     private static String addressPattern = "^.{3,30},[ ]?\\d{1,4}";
     static public Person CreatePerson(Scanner scanner, typeOfPersons type) throws CancellationException{
         Person person;
-        System.out.println("Створення" + (type == typeOfPersons.applicant? "абітурієнта" : "викладача"));
+        System.out.println("Створення " + (type == typeOfPersons.applicant? "абітурієнта" : "викладача"));
         System.out.print("Ім'я: ");
         String name = getStringParameter(namePattern, scanner);
         System.out.print("Прізвище: ");
@@ -33,7 +33,6 @@ class Creator{
             System.out.println("Вкажіть id факультету(0 для виведення списку факультетів; -1 для відміни): ");
             Faculty faculty = App.ChooseObject(App.faculties, scanner);
             faculty.AddTeacher((Teacher)person);
-            person.faculty = faculty;
         }
         System.out.println("Об'єкт було створено");
         return person;
